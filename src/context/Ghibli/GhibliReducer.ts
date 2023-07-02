@@ -1,4 +1,4 @@
-import { GhibliContextAction, GhibliContextState } from '../../types/CommonTypes';
+import { GhibliContextAction, GhibliContextState } from '../../@types/CommonTypes';
 
 
 const GhibliReducer = (state: GhibliContextState, action: GhibliContextAction) => {
