@@ -1,4 +1,4 @@
-import { NavBar, FilmCard } from './components/index';
+import { NavBar, FilmsContainer } from './components/index';
 import { GhibliProvider } from './context/Ghibli/GhibliContext';
 
 function App() {
@@ -6,8 +6,7 @@ function App() {
     <GhibliProvider>
       <div className='flex flex-col justify-between h-screen bg-gray-700'>
         <NavBar />
-        <FilmCard />
-        <FilmCard />
+        <FilmsContainer />
       </div>
     </GhibliProvider>
   );

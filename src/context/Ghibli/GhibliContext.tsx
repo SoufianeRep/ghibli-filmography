@@ -1,17 +1,29 @@
 import { createContext, useReducer, FC, Reducer } from 'react';
 import GhibliReducer from './GhibliReducer';
+import { GhibliContextState } from '../../@types/CommonTypes';
 
 type R = Reducer<any, any>;
 
-const GhibliContext = createContext(null);
+const initialState: GhibliContextState = {
+  films: [],
+  film: {
+    title: '',
+    originalTitle: '',
+    titleRomanized: '',
+    description: '',
+    director: '',
+    producer: '',
+    releaseDate: '',
+    runningTime: '',
+    image: '',
+    people: [],
+  },
+  isLoading: false,
+};
+
+const GhibliContext = createContext(initialState);
 
 export const GhibliProvider: FC = ({ children }) => {
-  const initialState = {
-    films: [],
-    film: {},
-    isLoading: false,
-  };
-
   const [state, dispatch] = useReducer<R>(GhibliReducer, initialState);
 
   return (
@@ -25,3 +37,5 @@ export const GhibliProvider: FC = ({ children }) => {
     </GhibliContext.Provider>
   );
 };
+
+export default GhibliContext;
