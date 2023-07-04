@@ -10,22 +10,21 @@ const film = {
   image:
     'https://image.tmdb.org/t/p/w600_and_h900_bestv2/npOnzAbLh6VOIu3naU5QaEcTepo.jpg',
 };
-// @ts-ignore
 const FilmCard: FC<Film> = ({ title, image, releaseDate, runningTime }) => {
   return (
-    <div className='flex max-w-md bg-gray-800 shadow-2xl card rounded-lg overflow-hidden'>
+    <div className='w-80 flex flex-col max-w-md bg-gray-800 shadow-xl card rounded-lg overflow-hidden'>
       <div className='w-1/3'>
-        <figure>
+        <figure className='w-80'>
           <img src={`${image}`} alt={`${title} poster`} />
         </figure>
       </div>
       <div className='p-4 text-white'>
-        <div className='text-3xl italic font-medium'>
-          <h2>{title}</h2>
+        <div className='text-2xl font-medium mb-4'>
+          <h2 className='overflow-hidden text-ellipsis'>{title}</h2>
         </div>
-        <div className='flex flex-col'>
-          <span>Release Year: {releaseDate}</span>
-          <span>Length: {toHouresAndMinutes(runningTime)}</span>
+        <div className='flex justify-start gap-3'>
+          <span className='dark-pill'>{toHouresAndMinutes(runningTime)}</span>
+          <span className='indigo-pill'>{releaseDate}</span>
         </div>
       </div>
     </div>

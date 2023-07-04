@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const NavBar: FC = () => {
   return (
-    <nav className='bg-gray-800 border-gray-700 p-3 rounded h-16'>
+    <nav className='flex-shrink-0 bg-gray-800 border-gray-800 p-3 h-16'>
       <div className=''>
         <div className=''></div>
       </div>

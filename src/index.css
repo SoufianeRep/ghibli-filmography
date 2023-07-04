@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .indigo-pill {
+    @apply text-lg font-medium mr-2 px-2.5 py-0.5 rounded-full bg-indigo-900 text-indigo-300 border border-indigo-500;
+  }
+
+  .dark-pill {
+    @apply text-lg font-medium mr-2 px-2.5 py-0.5 rounded-full bg-gray-700 text-gray-400 border border-gray-500
+  }
+
+  .f-info-item {
+    @apply flex gap-4 mb-3 items-center;
+  }
+
+  .f-info-item-title {
+    @apply text-lg font-semibold text-gray-300 italic;
+  }
+}

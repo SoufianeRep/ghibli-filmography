@@ -9,7 +9,7 @@ const initialState: GhibliContextState = {
   film: {
     title: '',
     originalTitle: '',
-    titleRomanized: '',
+    originalTitleRomanised: '',
     description: '',
     director: '',
     producer: '',

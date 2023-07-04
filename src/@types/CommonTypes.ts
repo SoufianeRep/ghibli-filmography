@@ -1,11 +1,11 @@
-import { Reducer } from 'react'
+import { ChangeEvent, Dispatch, FormEvent, Reducer, SetStateAction } from 'react'
 
 
 export type Film = {
   id?: string;
   title: string;
   originalTitle?: string;
-  titleRomanized?: string;
+  originalTitleRomanised?: string;
   description?: string;
   director?: string;
   producer?: string;
@@ -16,6 +16,7 @@ export type Film = {
 }
 
 export type FilmItem = {
+  id: string;
   title: string;
   releaseDate: string;
   runningTime: string;
@@ -26,10 +27,17 @@ export interface GhibliContextState {
   films: FilmItem[];
   film: Film | null;
   isLoading: boolean;
-  dispatch: React.Dispatch<unknown>;
+  dispatch: Dispatch<unknown>;
 }
 
 export interface GhibliContextAction {
   type: string
   payload?: unknown;
+}
+
+export interface SearchBarProps {
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+  handleCriteriaChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handleSearch: (e: FormEvent<HTMLFormElement>) => void;
 }

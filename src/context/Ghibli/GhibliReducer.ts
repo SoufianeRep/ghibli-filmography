@@ -8,7 +8,7 @@ const GhibliReducer = (state: GhibliContextState, action: GhibliContextAction) =
         ...state,
         isLoading: true
       };
-    case 'GET_FILMS':
+    case 'SET_FILMS':
       return {
         ...state,
         films: action.payload,
@@ -24,6 +24,11 @@ const GhibliReducer = (state: GhibliContextState, action: GhibliContextAction) =
         ...state,
         film: action.payload,
         isLoading: false
+      };
+    case 'SEARCH_FILMS':
+      return {
+        ...state,
+        films: action.payload,
       }
   }
 }
