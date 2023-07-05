@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
+import { ChangeEvent, Dispatch, FormEvent, ReactNode, SetStateAction } from 'react'
 
 
 export type Film = {
@@ -28,6 +28,10 @@ export interface GhibliContextState {
   film: Film | null;
   isLoading: boolean;
   dispatch: Dispatch<unknown>;
+}
+
+export type ChildrenProps = {
+  children: ReactNode,
 }
 
 export interface GhibliContextAction {

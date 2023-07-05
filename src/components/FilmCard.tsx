@@ -5,9 +5,9 @@ import { toHouresAndMinutes } from '../utils/helpers';
 
 const FilmCard: FC<Film> = ({ title, image, releaseDate, runningTime }) => {
   return (
-    <div className='w-80 flex flex-col max-w-md bg-gray-800 shadow-xl card rounded-lg overflow-hidden'>
+    <div className='w-80 md:w-64 lg:w-56 flex flex-col max-w-md bg-gray-800 shadow-xl card rounded-lg overflow-hidden'>
       <div className='w-1/3'>
-        <figure className='w-80'>
+        <figure className='w-80 md:w-64 lg:w-56'>
           <img src={`${image}`} alt={`${title} poster`} />
         </figure>
       </div>

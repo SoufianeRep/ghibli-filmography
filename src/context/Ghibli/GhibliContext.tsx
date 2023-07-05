@@ -1,6 +1,6 @@
 import { createContext, useReducer, FC, Reducer } from 'react';
 import GhibliReducer from './GhibliReducer';
-import { GhibliContextState } from '../../@types/CommonTypes';
+import { ChildrenProps, GhibliContextState } from '../../@types/CommonTypes';
 
 type R = Reducer<any, any>;
 
@@ -19,11 +19,14 @@ const initialState: GhibliContextState = {
     people: [],
   },
   isLoading: false,
+  dispatch: () => {
+    // Placeholder function
+  },
 };
 
 const GhibliContext = createContext(initialState);
 
-export const GhibliProvider: FC = ({ children }) => {
+export const GhibliProvider: FC<ChildrenProps> = ({ children }) => {
   const [state, dispatch] = useReducer<R>(GhibliReducer, initialState);
 
   return (

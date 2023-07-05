@@ -1,6 +1,6 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FilmCard, Pagination, SearchBar } from '.';
+import { FilmCard, Loading, Pagination, SearchBar } from '.';
 import GhibliContext from '../context/Ghibli/GhibliContext';
 import { getFilms } from '../context/Ghibli/GhibliActions';
 import { FilmItem } from '../@types/CommonTypes';
@@ -94,29 +94,27 @@ const FilmsContainer: FC = () => {
     );
   });
 
-  const loadingMarkup = <div>Loading...</div>;
-
-  if (isLoading) return loadingMarkup;
-
   return (
-    <div className='rounded-3xl flex flex-col'>
-      <div className='text-center'>
+    <div className='mx-6 md:mx-32 lg:mx-48'>
+      <div className='rounded-3xl flex flex-col'>
         <SearchBar
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           handleCriteriaChange={handleCriteriaChange}
           handleSearch={handleSearch}
         />
-        <Pagination
-          filmsPerPage={filmsPerPage}
-          totalFilms={currentFilmsList.length}
-          handlePaginate={handlePaginate}
-          handleNext={handleNext}
-          handlePrev={handlePrev}
-        />
-      </div>
-      <div className='grid grid-cols-1 lg:grid-cols-3 xl:grid-col-3 justify-items-center items-start gap-4 px-5'>
-        {cardsMarkup}
+        <div className='text-center'>
+          <Pagination
+            filmsPerPage={filmsPerPage}
+            totalFilms={currentFilmsList.length}
+            handlePaginate={handlePaginate}
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+          />
+        </div>
+        <div className='grid grid-rows-2 place-items-center items-center gap-4 px-5 pb-5'>
+          {isLoading ? <Loading /> : cardsMarkup}
+        </div>
       </div>
     </div>
   );
