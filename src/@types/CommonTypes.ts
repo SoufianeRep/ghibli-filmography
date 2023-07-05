@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FormEvent, Reducer, SetStateAction } from 'react'
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
 
 
 export type Film = {
@@ -40,4 +40,12 @@ export interface SearchBarProps {
   setSearchValue: Dispatch<SetStateAction<string>>;
   handleCriteriaChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   handleSearch: (e: FormEvent<HTMLFormElement>) => void;
+}
+
+export interface PaginationProps {
+  filmsPerPage: number;
+  totalFilms: number;
+  handlePaginate: (pageNumber: number) => void;
+  handleNext: () => void;
+  handlePrev: () => void;
 }
