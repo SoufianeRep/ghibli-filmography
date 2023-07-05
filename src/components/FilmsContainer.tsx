@@ -1,21 +1,24 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FilmCard, SearchBar } from '.';
+import { FilmCard, Pagination, SearchBar } from '.';
 import GhibliContext from '../context/Ghibli/GhibliContext';
 import { getFilms } from '../context/Ghibli/GhibliActions';
 import { FilmItem } from '../@types/CommonTypes';
 
 const FilmsContainer: FC = () => {
   const { films, isLoading, dispatch } = useContext(GhibliContext);
+  const [filteredFilms, setFilteredFilms] = useState<FilmItem[]>([]);
   const [searchCriteria, setSearchCriteria] = useState('name');
   const [searchValue, setSearchValue] = useState('');
-  const [filteredFilms, setFilteredFilms] = useState<FilmItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filmsPerPage] = useState(10);
 
   useEffect(() => {
     dispatch({ type: 'SET_LOADING' });
     const fetchFilms = async () => {
       const filmsData = await getFilms();
       dispatch({ type: 'SET_FILMS', payload: filmsData });
+
       setFilteredFilms(filmsData);
     };
 
@@ -51,6 +54,13 @@ const FilmsContainer: FC = () => {
     }
   };
 
+  const handlePaginate = (pageNumber: number) => {
+    const indexOfLastFilm = currentPage * filmsPerPage;
+    const indexOfFirstFilm = indexOfLastFilm - filmsPerPage;
+    const currentFilms = films.slice(indexOfFirstFilm, indexOfLastFilm);
+    setCurrentPage(pageNumber);
+  };
+
   const cardsMarkup = filteredFilms.map((film, idx) => {
     return (
       <Link key={idx} to={`/films/${film.id}`}>
@@ -71,6 +81,11 @@ const FilmsContainer: FC = () => {
           setSearchValue={setSearchValue}
           handleCriteriaChange={handleCriteriaChange}
           handleSearch={handleSearch}
+        />
+        <Pagination
+          filmsPerPage={filmsPerPage}
+          totalFilms={films.length}
+          paginate={handlePaginate}
         />
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-3 xl:grid-col-3 justify-items-center items-start gap-4 px-5'>

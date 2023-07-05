@@ -13,7 +13,7 @@ export const getFilms = async (): Promise<FilmItem[]> => {
 }
 
 export const getFilm = async (id: string | undefined): Promise<Film>  => {
-  const response = await ghibli.get(`/films/${id ?? ""}`);
+  const response = await ghibli.get(`/films/${id}`);
   const filmData = camelizeKeys(response.data) as Film;
   return filmData;
 }

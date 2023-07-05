@@ -11,7 +11,7 @@ const SearchBar: FC<SearchBarProps> = ({
     setSearchValue(e.currentTarget.value);
   };
   return (
-    <form onSubmit={handleSearch} className='p-6 flex'>
+    <form onSubmit={handleSearch} className='p-6 flex' data-cy='search-bar'>
       <select
         onChange={handleCriteriaChange}
         className='flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center border rounded-l-lg  focus:ring-4 focus:outline-none  bg-gray-700 hover:bg-gray-600 focus:ring-gray-700 text-white border-gray-600'
