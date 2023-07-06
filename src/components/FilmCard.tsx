@@ -16,7 +16,7 @@ const FilmCard: FC<Film> = ({ title, image, releaseDate, runningTime }) => {
           </figure>
         </div>
         <div className='md:h-24 p-3 text-white flex-grow-1 flex flex-col justify-between'>
-          <div className='mb-3 leading-1 whitespace-no-wrap overflow-hidden text-ellipsis font-medium text-3xl md:text-xl md:font-small md:leading-none'>
+          <div className='mb-3 leading-1 whitespace-no-wrap text-ellipsis font-medium text-3xl md:text-lg md:font-small md:leading-none'>
             <p data-cy='film-title'>{title}</p>
           </div>
           <div className='flex justify-end gap-2'>

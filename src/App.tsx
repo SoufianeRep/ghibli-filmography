@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { GhibliProvider } from './context/Ghibli/GhibliContext';
-import { FilmsContainer, Film, PageNotFound } from './pages/index';
+import { FilmsPage, Film, PageNotFound } from './pages/index';
 import { NavBar } from './components/index';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <NavBar />
 
         <Routes>
-          <Route path='/' element={<FilmsContainer />} />
+          <Route path='/' element={<FilmsPage />} />
           <Route path='/films/:id' element={<Film />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>

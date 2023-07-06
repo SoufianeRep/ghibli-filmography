@@ -20,7 +20,7 @@ const SearchBar: FC<SearchBarProps> = ({
         <select
           data-cy='select-input'
           onChange={handleCriteriaChange}
-          className='flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center border rounded-l-lg focus:outline-none  bg-gray-700 hover:bg-gray-600 focus:ring-gray-700 text-white border-gray-600'
+          className='flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center border rounded-l-lg focus:outline-none  bg-gray-700 hover:bg-gray-600 focus:ring-gray-700 text-white border-gray-600'
         >
           <option value='name'>By Name</option>
           <option value='year'>By Year</option>
@@ -28,7 +28,7 @@ const SearchBar: FC<SearchBarProps> = ({
         <div className='relative w-full'>
           <input
             type='search'
-            className='p-2.5 w-full z-20 text-md rounded-r-lg border bg-gray-700 border-l-gray-700  border-gray-600 placeholder-gray-300 text-white focus:border-blue-600'
+            className='p-2.5 w-full z-20 text-md rounded-r-lg border bg-gray-700 border-l-gray-700  border-gray-600 placeholder-gray-300 text-white focus:border-gray-700'
             placeholder='Search For a Film...'
             data-cy='search-input'
             value={searchValue}

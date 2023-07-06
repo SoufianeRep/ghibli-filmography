@@ -1,7 +1,7 @@
 import Film from './Film';
-import FilmsContainer from './FilmsContainer';
+import FilmsPage from './FilmsPage';
 import PageNotFound from './PageNotFound';
 
 export  {
-  Film, FilmsContainer, PageNotFound
+  Film, FilmsPage, PageNotFound
 }

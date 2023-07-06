@@ -5,7 +5,7 @@ import GhibliContext from '../context/Ghibli/GhibliContext';
 import { getFilms } from '../context/Ghibli/GhibliActions';
 import { FilmItem } from '../@types/CommonTypes';
 
-const FilmsContainer: FC = () => {
+const FilmsPage: FC = () => {
   const { films, isLoading, dispatch } = useContext(GhibliContext);
   const [filteredFilms, setFilteredFilms] = useState<FilmItem[]>([]);
   const [displayedFilms, setDisplayedFilms] = useState<FilmItem[]>([]);
@@ -145,4 +145,4 @@ const FilmsContainer: FC = () => {
   );
 };
 
-export default FilmsContainer;
+export default FilmsPage;
