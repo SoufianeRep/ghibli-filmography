@@ -18,7 +18,7 @@ const PageNotFound: FC = () => {
             The page you are looking for does not exist
           </p>
           <Link to='/'>
-            <button className='mt-4 flex items-center justify-center px-3 h-8 ml-0 leading-tight border rounded-lg bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white'>
+            <button className='mt-4 flex items-center justify-center px-3 h-8 ml-0 leading-tight border rounded-lg bg-gray-800 border-gray-700 text-gray-400 shadow-lg hover:bg-gray-700 hover:text-white'>
               Home
             </button>
           </Link>
