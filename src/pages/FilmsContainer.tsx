@@ -1,6 +1,6 @@
 import { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FilmCard, Loading, Pagination, SearchBar } from '.';
+import { FilmCard, Loading, Pagination, SearchBar } from '../components/index';
 import GhibliContext from '../context/Ghibli/GhibliContext';
 import { getFilms } from '../context/Ghibli/GhibliActions';
 import { FilmItem } from '../@types/CommonTypes';

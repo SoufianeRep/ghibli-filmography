@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import GhibliContext from '../context/Ghibli/GhibliContext';
 import { getFilm, getFilmPeople } from '../context/Ghibli/GhibliActions';
 import { toHouresAndMinutes } from '../utils/helpers';
-import { Loading } from '.';
+import { Loading } from '../components/index';
 
 const Film: FC = () => {
   const { film, isLoading, dispatch } = useContext(GhibliContext);
