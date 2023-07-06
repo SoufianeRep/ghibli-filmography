@@ -30,8 +30,8 @@ const Film: FC = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className='flex h-screen justify-center items-center'>
-      <div className='w-3/4 border border-gray-800 bg-gray-800 rounded-md shadow-xl p-4'>
+    <div className='flex h-screen justify-center items-center relative'>
+      <div className='w-3/4 border border-gray-900 bg-gray-800 rounded-md drop-shadow-xl shadow-2xl p-4'>
         <div className='film-header flex justify-start items-center gap-4 px-3'>
           <p className='text-white text-5xl md font-semibold leading-none'>
             {film?.title}

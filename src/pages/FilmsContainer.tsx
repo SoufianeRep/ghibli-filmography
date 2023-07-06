@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FilmCard, Loading, Pagination, SearchBar } from '../components/index';
 import GhibliContext from '../context/Ghibli/GhibliContext';
@@ -45,7 +45,7 @@ const FilmsContainer: FC = () => {
     }
 
     if (searchCriteria === 'name') {
-      const search = searchValue.toLowerCase();
+      const search = searchValue.toLowerCase().trim();
       const searchResult = films.filter((film) => {
         const filmTitle = film.title.toLowerCase();
         return filmTitle.includes(search);
@@ -55,13 +55,13 @@ const FilmsContainer: FC = () => {
 
     if (searchCriteria === 'year') {
       const searchResult = films.filter(
-        (film) => film.releaseDate === searchValue
+        (film) => film.releaseDate === searchValue.trim()
       );
       setFilteredFilms(searchResult);
     }
   };
 
-  // search effect to display the correct paginated films films
+  // search side effect to display the correct paginated films
   useEffect(() => {
     handlePaginate(1);
   }, [filteredFilms]);
@@ -93,16 +93,28 @@ const FilmsContainer: FC = () => {
   };
 
   // Render film cards
-  const cardsMarkup = displayedFilms.map((film, idx) => {
-    return (
-      <Link key={idx} to={`/films/${film.id}`} className='self-stretch'>
-        <FilmCard {...film} />
-      </Link>
-    );
-  });
+  const cardsMarkup = (
+    <div className='flex justify-center flex-wrap items-center gap-2 px-5 pb-5'>
+      {displayedFilms.map((film, idx) => {
+        return (
+          <Link key={idx} to={`/films/${film.id}`} className='self-stretch'>
+            <FilmCard {...film} />
+          </Link>
+        );
+      })}
+    </div>
+  );
+
+  const noResultMarkup = (
+    <div className='flex flex-col items-center mt-20'>
+      <p className='text-gray-300 text-2xl font-medium'>
+        No search results for: "{searchValue}"
+      </p>
+    </div>
+  );
 
   return (
-    <div className='mx-6 md:mx-24 lg:mx-32'>
+    <div className='h-full mx-6 md:mx-24 lg:mx-32 flex flex-col'>
       <SearchBar
         searchValue={searchValue}
         setSearchValue={setSearchValue}
@@ -118,9 +130,13 @@ const FilmsContainer: FC = () => {
           handlePrev={handlePrev}
         />
       )}
-      <div className='flex justify-center flex-wrap items-center gap-2 px-5 pb-5'>
-        {isLoading ? <Loading /> : cardsMarkup}
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : displayedFilms.length === 0 ? (
+        noResultMarkup
+      ) : (
+        cardsMarkup
+      )}
     </div>
   );
 };
