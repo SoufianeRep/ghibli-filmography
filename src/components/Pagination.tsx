@@ -25,22 +25,24 @@ const Pagination: FC<PaginationProps> = ({
   ));
 
   return (
-    <div className='inline-flex -space-x-px text-sm'>
-      <button
-        onClick={handlePrev}
-        className='flex items-center justify-center px-3 h-8 ml-0 leading-tight border rounded-l-lg bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white'
-      >
-        Prev
-      </button>
+    <div className='flex justify-center pb-4'>
+      <div className='inline-flex -space-x-px text-sm'>
+        <button
+          onClick={handlePrev}
+          className='flex items-center justify-center px-3 h-8 ml-0 leading-tight border rounded-l-lg bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white'
+        >
+          Prev
+        </button>
 
-      {pageNumbersMarkup}
+        {pageNumbersMarkup}
 
-      <button
-        onClick={handleNext}
-        className='flex items-center justify-center px-3 h-8 leading-tight border rounded-r-lg bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white'
-      >
-        Next
-      </button>
+        <button
+          onClick={handleNext}
+          className='flex items-center justify-center px-3 h-8 leading-tight border rounded-r-lg bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white'
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

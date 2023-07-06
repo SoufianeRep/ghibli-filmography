@@ -9,16 +9,20 @@ const Film: FC = () => {
   const { film, isLoading, dispatch } = useContext(GhibliContext);
   const { id } = useParams();
 
-  useEffect(() => {
-    dispatch({ type: 'SET_LOADING' });
-    const fetchFilm = async () => {
+  const fetchFilm = async () => {
+    try {
       const filmData = await getFilm(id);
       const people = await getFilmPeople(filmData.people);
       filmData.people = people.map((person) => person.data.name);
       console.log(filmData.people);
-
       dispatch({ type: 'GET_FILM', payload: filmData });
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    dispatch({ type: 'SET_LOADING' });
 
     fetchFilm();
   }, []);
@@ -26,11 +30,13 @@ const Film: FC = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className='grid grid-col-1 place-items-center'>
-      <div className='w-3/4 border border-gray-900 bg-gray-800 rounded-md shadow-lg p-4'>
-        <div className='film-header flex justify-start gap-4 px-3'>
-          <p className='text-white text-5xl font-semibold'>{film?.title}</p>
-          <div className='flex items-end gap-2'>
+    <div className='flex h-screen justify-center items-center'>
+      <div className='w-3/4 border border-gray-800 bg-gray-800 rounded-md shadow-xl p-4'>
+        <div className='film-header flex justify-start items-center gap-4 px-3'>
+          <p className='text-white text-5xl md font-semibold leading-none'>
+            {film?.title}
+          </p>
+          <div className='flex items-end gap-2 pt-4'>
             <span className='indigo-pill'>
               {toHouresAndMinutes(film?.runningTime)}
             </span>

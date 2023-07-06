@@ -7,22 +7,27 @@ import { FilmItem } from '../@types/CommonTypes';
 
 const FilmsContainer: FC = () => {
   const { films, isLoading, dispatch } = useContext(GhibliContext);
-  const [currentFilmsList, setCurrentFilmsList] = useState<FilmItem[]>([]);
+  const [filteredFilms, setFilteredFilms] = useState<FilmItem[]>([]);
   const [displayedFilms, setDisplayedFilms] = useState<FilmItem[]>([]);
   const [searchCriteria, setSearchCriteria] = useState('name');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [filmsPerPage] = useState(10);
 
-  useEffect(() => {
-    dispatch({ type: 'SET_LOADING' });
-    const fetchFilms = async () => {
+  const fetchFilms = async () => {
+    try {
       const filmsData = await getFilms();
       dispatch({ type: 'SET_FILMS', payload: filmsData });
 
-      setCurrentFilmsList(filmsData);
+      setFilteredFilms(filmsData);
       setDisplayedFilms(filmsData.slice(0, filmsPerPage));
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    dispatch({ type: 'SET_LOADING' });
     fetchFilms();
   }, []);
 
@@ -31,11 +36,12 @@ const FilmsContainer: FC = () => {
     setSearchCriteria(criteria);
   };
 
+  // handles the search and updates the films list
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (searchValue === '') {
-      setCurrentFilmsList(films);
+      setDisplayedFilms(films.slice(0, filmsPerPage));
     }
 
     if (searchCriteria === 'name') {
@@ -44,41 +50,41 @@ const FilmsContainer: FC = () => {
         const filmTitle = film.title.toLowerCase();
         return filmTitle.includes(search);
       });
-      setCurrentFilmsList(searchResult);
-      setDisplayedFilms(searchResult);
+      setFilteredFilms(() => searchResult);
     }
 
     if (searchCriteria === 'year') {
       const searchResult = films.filter(
         (film) => film.releaseDate === searchValue
       );
-      setCurrentFilmsList(searchResult);
-      setDisplayedFilms(searchResult);
+      setFilteredFilms(searchResult);
     }
   };
 
-  const handlePaginate = useCallback(
-    (pageNumber: number) => {
-      const indexOfLastFilm = pageNumber * filmsPerPage;
-      const indexOfFirstFilm = indexOfLastFilm - filmsPerPage;
-      const currentFilms = currentFilmsList.slice(
-        indexOfFirstFilm,
-        indexOfLastFilm
-      );
-      setDisplayedFilms(currentFilms);
-      setCurrentPage(pageNumber);
-    },
-    [filmsPerPage, currentFilmsList]
-  );
+  // search effect to display the correct paginated films films
+  useEffect(() => {
+    handlePaginate(1);
+  }, [filteredFilms]);
 
+  // handles the list of films to be displayed on pagination navigation
+  const handlePaginate = (pageNumber: number) => {
+    const lastFilm = pageNumber * filmsPerPage;
+    const firstFilm = lastFilm - filmsPerPage;
+    const currentList = filteredFilms.slice(firstFilm, lastFilm);
+    setDisplayedFilms(() => currentList);
+    setCurrentPage(pageNumber);
+  };
+
+  // handles next page button
   const handleNext = (): void => {
-    const lastPage = Math.ceil(currentFilmsList.length / filmsPerPage);
+    const lastPage = Math.ceil(filteredFilms.length / filmsPerPage);
     const nextPage = currentPage + 1;
     if (nextPage <= lastPage) {
       handlePaginate(nextPage);
     }
   };
 
+  // handles previous button
   const handlePrev = (): void => {
     const prevPage = currentPage - 1;
     if (prevPage >= 1) {
@@ -86,35 +92,34 @@ const FilmsContainer: FC = () => {
     }
   };
 
+  // Render film cards
   const cardsMarkup = displayedFilms.map((film, idx) => {
     return (
-      <Link key={idx} to={`/films/${film.id}`}>
+      <Link key={idx} to={`/films/${film.id}`} className='self-stretch'>
         <FilmCard {...film} />
       </Link>
     );
   });
 
   return (
-    <div className='mx-6 md:mx-32 lg:mx-48'>
-      <div className='rounded-3xl flex flex-col'>
-        <SearchBar
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          handleCriteriaChange={handleCriteriaChange}
-          handleSearch={handleSearch}
+    <div className='mx-6 md:mx-24 lg:mx-32'>
+      <SearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        handleCriteriaChange={handleCriteriaChange}
+        handleSearch={handleSearch}
+      />
+      {filteredFilms.length > 0 && (
+        <Pagination
+          filmsPerPage={filmsPerPage}
+          totalFilms={filteredFilms.length}
+          handlePaginate={handlePaginate}
+          handleNext={handleNext}
+          handlePrev={handlePrev}
         />
-        <div className='text-center'>
-          <Pagination
-            filmsPerPage={filmsPerPage}
-            totalFilms={currentFilmsList.length}
-            handlePaginate={handlePaginate}
-            handleNext={handleNext}
-            handlePrev={handlePrev}
-          />
-        </div>
-        <div className='grid grid-rows-2 place-items-center items-center gap-4 px-5 pb-5'>
-          {isLoading ? <Loading /> : cardsMarkup}
-        </div>
+      )}
+      <div className='flex justify-center flex-wrap items-center gap-2 px-5 pb-5'>
+        {isLoading ? <Loading /> : cardsMarkup}
       </div>
     </div>
   );

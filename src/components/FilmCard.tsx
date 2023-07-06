@@ -5,19 +5,23 @@ import { toHouresAndMinutes } from '../utils/helpers';
 
 const FilmCard: FC<Film> = ({ title, image, releaseDate, runningTime }) => {
   return (
-    <div className='w-80 md:w-64 lg:w-56 flex flex-col max-w-md bg-gray-800 shadow-xl card rounded-lg overflow-hidden'>
-      <div className='w-1/3'>
-        <figure className='w-80 md:w-64 lg:w-56'>
-          <img src={`${image}`} alt={`${title} poster`} />
-        </figure>
-      </div>
-      <div className='p-4 text-white'>
-        <div className='text-2xl font-medium mb-4'>
-          <h2 className='overflow-hidden text-ellipsis'>{title}</h2>
+    <div className='w-auto md:w-64 lg:w-56 flex flex-col items-stretch max-w-md bg-gray-800 shadow-xl card rounded-lg overflow-hidden'>
+      <div className='self-stretch'>
+        <div className='h-2/3'>
+          <figure className='w-auto min-w-auto md:w-64 lg:w-56'>
+            <img src={`${image}`} alt={`${title} poster`} />
+          </figure>
         </div>
-        <div className='flex justify-start gap-3'>
-          <span className='dark-pill'>{toHouresAndMinutes(runningTime)}</span>
-          <span className='indigo-pill'>{releaseDate}</span>
+        <div className='md:h-24 px-4 py-2 text-white flex-grow-1 flex flex-col justify-between'>
+          <div className='mb-3 leading-1 whitespace-no-wrap overflow-hidden text-ellipsis font-medium text-3xl md:text-xl md:font-small md:leading-none'>
+            <p>{title}</p>
+          </div>
+          <div className='flex justify-start gap-3'>
+            <span className='dark-pill md:text-sm'>
+              {toHouresAndMinutes(runningTime)}
+            </span>
+            <span className='indigo-pill md:text-sm'>{releaseDate}</span>
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { NavBar, FilmsContainer, Film } from './components/index';
 function App() {
   return (
     <GhibliProvider>
-      <div className='flex flex-col h-screen bg-gray-500 overflow-auto'>
+      <div className='flex flex-col h-screen bg-gradient-to-bl from-gray-800 via-gray-500 to-gray-400 overflow-auto'>
         <NavBar />
         <Router>
           <Routes>
