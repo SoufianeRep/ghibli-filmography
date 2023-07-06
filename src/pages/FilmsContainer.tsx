@@ -42,6 +42,7 @@ const FilmsContainer: FC = () => {
 
     if (searchValue === '') {
       setDisplayedFilms(films.slice(0, filmsPerPage));
+      return;
     }
 
     if (searchCriteria === 'name') {
@@ -94,7 +95,10 @@ const FilmsContainer: FC = () => {
 
   // Render film cards
   const cardsMarkup = (
-    <div className='flex justify-center flex-wrap items-center gap-2 px-5 pb-5'>
+    <div
+      data-cy='movie-list'
+      className='flex justify-center flex-wrap items-center gap-2 px-5 pb-5'
+    >
       {displayedFilms.map((film, idx) => {
         return (
           <Link key={idx} to={`/films/${film.id}`} className='self-stretch'>
@@ -107,7 +111,7 @@ const FilmsContainer: FC = () => {
 
   const noResultMarkup = (
     <div className='flex flex-col items-center mt-20'>
-      <p className='text-gray-300 text-2xl font-medium'>
+      <p className='text-gray-300 text-2xl font-medium' data-cy='no-result'>
         No search results for: "{searchValue}"
       </p>
     </div>

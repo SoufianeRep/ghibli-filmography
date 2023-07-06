@@ -30,7 +30,10 @@ const Film: FC = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className='flex h-screen justify-center items-center relative'>
+    <div
+      className='flex h-screen justify-center items-center relative'
+      data-cy='film-info'
+    >
       <div className='w-3/4 border border-gray-900 bg-gray-800 rounded-md drop-shadow-xl shadow-2xl p-4'>
         <div className='film-header flex justify-start items-center gap-4 px-3'>
           <p className='text-white text-5xl md font-semibold leading-none'>
@@ -51,19 +54,21 @@ const Film: FC = () => {
           <div className='film-info md:w-2/3 w-full p-3 text-white'>
             <div className='mb-3'>
               <p className='text-lg font-semibold text-gray-300'>Overview</p>
-              <p className='description text-lg'>{film?.description}</p>
+              <p className='description text-lg' data-cy='film-data'>
+                {film?.description}
+              </p>
             </div>
             <div className='f-info-item'>
               <p className='f-info-item-title'>Original title</p>
-              <p>{film?.originalTitle}</p>
+              <p data-cy='film-data'>{film?.originalTitle}</p>
             </div>
             <div className='f-info-item'>
               <p className='f-info-item-title'>Romanized title</p>
-              <p>{film?.originalTitleRomanised}</p>
+              <p data-cy='film-data'>{film?.originalTitleRomanised}</p>
             </div>
             <div className='f-info-item'>
               <p className='f-info-item-title'>Director</p>
-              <p>{film?.director}</p>
+              <p data-cy='film-data'>{film?.director}</p>
             </div>
             <div className='f-info-item'>
               <p className='f-info-item-title'>Producer</p>

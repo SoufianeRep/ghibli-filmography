@@ -18,6 +18,7 @@ const SearchBar: FC<SearchBarProps> = ({
         data-cy='search-bar'
       >
         <select
+          data-cy='select-input'
           onChange={handleCriteriaChange}
           className='flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center border rounded-l-lg focus:outline-none  bg-gray-700 hover:bg-gray-600 focus:ring-gray-700 text-white border-gray-600'
         >
@@ -29,12 +30,14 @@ const SearchBar: FC<SearchBarProps> = ({
             type='search'
             className='p-2.5 w-full z-20 text-md rounded-r-lg border bg-gray-700 border-l-gray-700  border-gray-600 placeholder-gray-300 text-white focus:border-blue-600'
             placeholder='Search For a Film...'
+            data-cy='search-input'
             value={searchValue}
             onChange={handleSearchChange}
           />
           <button
             type='submit'
             className='absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white rounded-r-lg border border-blue-700 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800'
+            data-cy='search-button'
           >
             <svg
               className='w-4 h-4'
