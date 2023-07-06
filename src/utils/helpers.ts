@@ -1,8 +1,8 @@
 /**
- *
- * @param minutes
- * @returns
- */
+* Converts the given number of minutes into a string representation of hours and minutes.
+* @param minutes - The number of minutes.
+* @returns The formatted string representing hours and minutes.
+*/
 export const toHouresAndMinutes = (minutes: string | undefined): string => {
   if (!minutes) return "No Data";
 

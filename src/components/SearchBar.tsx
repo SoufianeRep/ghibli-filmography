@@ -14,7 +14,7 @@ const SearchBar: FC<SearchBarProps> = ({
     <div className='rounded-3xl flex justify-center'>
       <form
         onSubmit={handleSearch}
-        className='md:w-1/2 py-4 flex'
+        className='md:w-1/2 my-4 flex shadow-lg'
         data-cy='search-bar'
       >
         <select
@@ -36,7 +36,7 @@ const SearchBar: FC<SearchBarProps> = ({
           />
           <button
             type='submit'
-            className='absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white rounded-r-lg border border-blue-700 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800'
+            className='absolute top-0 right-0 p-2.5 text-sm font-medium h-full rounded-r-lg border focus:outline-none  bg-gray-800 border-gray-600 text-gray-400 hover:bg-gray-700 hover:text-white'
             data-cy='search-button'
           >
             <svg

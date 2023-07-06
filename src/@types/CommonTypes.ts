@@ -1,5 +1,4 @@
-import { ChangeEvent, Dispatch, FormEvent, ReactNode, SetStateAction } from 'react'
-
+import { ChangeEvent, Dispatch, FormEvent, ReactNode, SetStateAction } from 'react';
 
 export type Film = {
   id?: string;
@@ -12,8 +11,8 @@ export type Film = {
   releaseDate: string;
   runningTime: string;
   image: string;
-  people?: string[];
-}
+  people: string[]; // An array of IDs representing people associated with the film
+};
 
 export type FilmItem = {
   id: string;
@@ -21,35 +20,35 @@ export type FilmItem = {
   releaseDate: string;
   runningTime: string;
   image: string;
-}
+};
 
 export interface GhibliContextState {
-  films: FilmItem[];
-  film: Film | null;
-  isLoading: boolean;
-  dispatch: Dispatch<unknown>;
+  films: FilmItem[]; // An array of film items
+  film: Film; // A single film object
+  isLoading: boolean; // Flag indicating if data is being loaded
+  dispatch: Dispatch<unknown>; // Dispatch function for context actions
 }
 
 export type ChildrenProps = {
-  children: ReactNode,
-}
+  children: ReactNode; // Child components to render
+};
 
 export interface GhibliContextAction {
-  type: string
-  payload?: unknown;
+  type: string; // Action type
+  payload?: unknown; // Action payload (optional)
 }
 
 export interface SearchBarProps {
-  searchValue: string;
-  setSearchValue: Dispatch<SetStateAction<string>>;
-  handleCriteriaChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  handleSearch: (e: FormEvent<HTMLFormElement>) => void;
+  searchValue: string; // Current search value
+  setSearchValue: Dispatch<SetStateAction<string>>; // Function to update the search value
+  handleCriteriaChange: (e: ChangeEvent<HTMLSelectElement>) => void; // Event handler for criteria change
+  handleSearch: (e: FormEvent<HTMLFormElement>) => void; // Event handler for search submission
 }
 
 export interface PaginationProps {
-  filmsPerPage: number;
-  totalFilms: number;
-  handlePaginate: (pageNumber: number) => void;
-  handleNext: () => void;
-  handlePrev: () => void;
+  filmsPerPage: number; // Number of films to display per page
+  totalFilms: number; // Total number of films
+  handlePaginate: (pageNumber: number) => void; // Function to handle pagination
+  handleNext: () => void; // Function to handle next page navigation
+  handlePrev: () => void; // Function to handle previous page navigation
 }

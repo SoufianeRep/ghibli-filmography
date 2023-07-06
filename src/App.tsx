@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { GhibliProvider } from './context/Ghibli/GhibliContext';
 import { FilmsContainer, Film, PageNotFound } from './pages/index';
 import { NavBar } from './components/index';

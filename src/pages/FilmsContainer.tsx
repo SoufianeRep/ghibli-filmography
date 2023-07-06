@@ -102,7 +102,7 @@ const FilmsContainer: FC = () => {
       {displayedFilms.map((film, idx) => {
         return (
           <Link key={idx} to={`/films/${film.id}`} className='self-stretch'>
-            <FilmCard {...film} />
+            <FilmCard people={[]} {...film} />
           </Link>
         );
       })}
