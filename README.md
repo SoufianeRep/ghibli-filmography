@@ -42,11 +42,11 @@ docker-compose up --build
 ```
 
 ## Project Structure
-`src/components`: Contains components used in the application.
-`src/context`:    Manages the global state and actions using the Context API.
-`src/pages`:      Includes the main pages of the application.
-`src/@types`:     Defines TypeScript types and interfaces.
-`src/utils`:      Contains utility functions and helper methods.
+- `src/components`: Contains components used in the application.
+- `src/context`:    Manages the global state and actions using the Context API.
+- `src/pages`:      Includes the main pages of the application.
+- `src/@types`:     Defines TypeScript types and interfaces.
+- `src/utils`:      Contains utility functions and helper methods.
 
 ## Running Tests
 
