@@ -3,7 +3,7 @@ import {camelizeKeys} from "humps";
 import { Film, FilmItem } from '../../@types/CommonTypes'
 
 const ghibli = axios.create({
-  baseURL: "https://ghibliapi.vercel.app"
+  baseURL: "https://ghibli.rest"
 });
 
 /**
@@ -22,7 +22,7 @@ export const getFilms = async (): Promise<FilmItem[]> => {
 * @returns A Promise resolving to a Film object.
 */
 export const getFilm = async (id: string | undefined): Promise<Film>  => {
-  const response = await ghibli.get(`/films/${id}`);
+  const response = await ghibli.get(`/films?id=${id}`);
   const filmData = camelizeKeys(response.data) as Film;
   return filmData;
 }
